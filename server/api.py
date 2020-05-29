@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 import requests
 import json
+import csv
 from flask_cors import CORS
 from firebase import Firebase
 
@@ -127,6 +128,28 @@ def llenarEth():
 
     return ("LISTO")
 
+@app.route('/llenar-brent')
+def llenarBrent():
+    f = open('brent.csv','r')
+    reader = csv.reader(f)
+    
+
+    for row in reader:
+        diccionario = {
+            'asset_id_base':row[2],
+            'asset_id_quote': "USD",
+            'rate': float(row[1]),
+            'time':row[0]
+        }
+        db.child("brentoil").child(row[0][ 0 : 10 ]).set(diccionario)
+        print(diccionario)
+    # for item in brent:
+    #     print(brent)
+
+    return ("OK")
+
+
+
 @app.route('/get-btc')
 def getbtc():
 
@@ -141,6 +164,15 @@ def getrth():
 
     # SE TRAE DE LA BASE DE DATOS EL VALOR DE "INICIADA" EN SETTINGS
     iniciada = db.child("eth").get()
+
+
+    return (iniciada.val())
+
+@app.route('/get-brent')
+def getbrent():
+
+    # SE TRAE DE LA BASE DE DATOS EL VALOR DE "INICIADA" EN SETTINGS
+    iniciada = db.child("brentoil").get()
 
 
     return (iniciada.val())
