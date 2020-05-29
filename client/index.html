@@ -8,7 +8,7 @@
     <!-- BOOTSTRAP  -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"  
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
@@ -17,6 +17,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
 
     <!-- D3JS  -->
     <script src="https://d3js.org/d3.v5.js"></script>
@@ -45,7 +46,8 @@
                           <option selected value="0">Choose...</option>
                           <option value="bitcoin">Bitcoin</option>
                           <option value="etherium">Etherium</option>
-                          <option value="coronavirus">Coronavirus</option>
+                          <option value="brentoil">BrentOil</option>
+                          <option value="covid">Covid</option>
                         </select>
                 
             </div>
@@ -56,13 +58,19 @@
                           <option selected value="0">Choose...</option>
                           <option value="bitcoin">Bitcoin</option>
                           <option value="etherium">Etherium</option>
-                          <option value="coronavirus">Coronavirus</option>
+                          <option value="brentoil">BrentOil</option>
+                          <option value="covid">Covid</option>
                         </select>
                 
             </div>
-            <div class=" col-4 " style="background-color: rgb(243, 243, 234);">
+            <div class=" col-4 " style="padding-top:30px;background-color: rgb(243, 243, 234);">
+
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                    <label class="custom-control-label" for="customSwitch1">Normalizado</label>
+                  </div>
                 
-                <button type="button" class="btn btn-primary">Analizar</button>
+                <!-- <button id="boton" type="button" class="btn btn-primary">Normalizar</button> -->
                 
             </div>
             <!-- <div class="controles" class=" col-4 bordes" style="background-color: rgb(243, 243, 234);">
@@ -97,9 +105,10 @@
                 <table id="dtVerticalScrollExample">
                     <thead>
                         <tr>
-                            <th scope="col">CryptoMoneda</th>
+                            <th scope="col">Producto</th>
                             <th scope="col">Vs</th>
-                            <th scope="col">Tipo de Cambio</th>
+                            <th id="unidad1" scope="col">Tipo de Cambio</th>
+                            <th scope="col">Normalizado</th>
                             <th scope="col">Tiempo</th>
                         </tr>
                     </thead>
@@ -115,9 +124,10 @@
                 <table id="dtVerticalScrollExample">
                     <thead>
                         <tr>
-                            <th scope="col">CryptoMoneda</th>
+                            <th scope="col">Producto</th>
                             <th scope="col">Vs</th>
-                            <th scope="col">Tipo de Cambio</th>
+                            <th id="unidad2" scope="col">Tipo de Cambio</th>
+                            <th scope="col">Normalizado</th>
                             <th scope="col">Tiempo</th>
                         </tr>
                     </thead>
@@ -134,7 +144,8 @@
 
 
 
-    <script src="./js/app.js"></script>
+    <script src="./js/appAPI.js"></script>
+    <!-- <script src="./js/appFirebase.js"></script> -->
 </body>
 
 
